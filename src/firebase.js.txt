@@ -1,0 +1,22 @@
+// Import Firebase modules
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";  // Add Firestore import
+import { getAnalytics } from "firebase/analytics";
+
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB3NM4tnVIoN3TFV7DrelzpBcwYFl_jqmU",
+  authDomain: "our-wallets-our-power.firebaseapp.com",
+  projectId: "our-wallets-our-power",
+  storageBucket: "our-wallets-our-power.appspot.com", // Fix typo: should be "appspot.com"
+  messagingSenderId: "109507287783",
+  appId: "1:109507287783:web:0ff7ec45fe1dff15906042",
+  measurementId: "G-ZMS07V2XWE"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);  // Initialize Firestore
+
+export { db };

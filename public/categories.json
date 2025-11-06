@@ -1,0 +1,63 @@
+[
+  { "id": "Apparel - Basics", "name": "Apparel - Basics" },
+  { "id": "Apparel - Fashion", "name": "Apparel - Fashion" },
+  { "id": "Apparel - Footwear", "name": "Apparel - Footwear" },
+  { "id": "Apparel - Sportswear", "name": "Apparel - Sportswear" },
+
+  { "id": "Appliances - Kitchen", "name": "Appliances - Kitchen" },
+  { "id": "Appliances - Home", "name": "Appliances - Home" },
+
+  { "id": "Automotive - Cars", "name": "Automotive - Cars" },
+  { "id": "Automotive - Parts", "name": "Automotive - Parts" },
+  { "id": "Automotive - Repair", "name": "Automotive - Repair" },
+  { "id": "Automotive - Supplies", "name": "Automotive - Supplies" },
+
+  { "id": "Beverages - Alcoholic", "name": "Beverages - Alcoholic" },
+  { "id": "Beverages - Non-Alcoholic", "name": "Beverages - Non-Alcoholic" },
+
+  { "id": "Cosmetics & Beauty", "name": "Cosmetics & Beauty" },
+  { "id": "Consumer Electronics", "name": "Consumer Electronics" },
+  { "id": "Construction & Materials", "name": "Construction & Materials" },
+
+  { "id": "Education", "name": "Education" },
+  { "id": "Energy - Oil & Gas", "name": "Energy - Oil & Gas" },
+  { "id": "Energy - Renewables", "name": "Energy - Renewables" },
+  { "id": "Entertainment - Media", "name": "Entertainment - Media" },
+  { "id": "Entertainment - Sports", "name": "Entertainment - Sports" },
+
+  { "id": "Finance - Banking", "name": "Finance - Banking" },
+  { "id": "Finance - Insurance", "name": "Finance - Insurance" },
+  { "id": "Finance - Investment", "name": "Finance - Investment" },
+
+  { "id": "Food - Basics", "name": "Food - Basics" },
+  { "id": "Food - Packaged", "name": "Food - Packaged" },
+  { "id": "Food - Restaurants", "name": "Food - Restaurants" },
+  { "id": "Food - Snacks", "name": "Food - Snacks" },
+
+  { "id": "Government & Policy", "name": "Government & Policy" },
+  { "id": "Groceries & Supermarkets", "name": "Groceries & Supermarkets" },
+  { "id": "Healthcare - Products", "name": "Healthcare - Products" },
+  { "id": "Healthcare - Services", "name": "Healthcare - Services" },
+  { "id": "Home & Furniture", "name": "Home & Furniture" },
+  { "id": "Industrial & Manufacturing", "name": "Industrial & Manufacturing" },
+
+  { "id": "Media & Publishing", "name": "Media & Publishing" },
+  { "id": "Miscellaneous", "name": "Miscellaneous" },
+
+  { "id": "Nonprofit & Advocacy", "name": "Nonprofit & Advocacy" },
+  { "id": "Pharmaceuticals", "name": "Pharmaceuticals" },
+  { "id": "Real Estate", "name": "Real Estate" },
+  { "id": "Retail - Department Stores", "name": "Retail - Department Stores" },
+  { "id": "Retail - Specialty", "name": "Retail - Specialty" },
+  { "id": "Shopping - Ecommerce", "name": "Shopping - Ecommerce" },
+
+  { "id": "Technology - Hardware", "name": "Technology - Hardware" },
+  { "id": "Technology - Software", "name": "Technology - Software" },
+  { "id": "Technology - Internet", "name": "Technology - Internet" },
+  { "id": "Telecommunications", "name": "Telecommunications" },
+
+  { "id": "Textiles & Materials", "name": "Textiles & Materials" },
+  { "id": "Tobacco", "name": "Tobacco" },
+  { "id": "Transportation & Logistics", "name": "Transportation & Logistics" },
+  { "id": "Travel & Hospitality", "name": "Travel & Hospitality" }
+]

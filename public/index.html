@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Wallets - Our Power</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZMS07V2XWE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZMS07V2XWE');
+  </script>
+
+  <style>
+    /* === Sticky Header === */
+    #mainHeader {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+      padding: 6px 0;
+    }
+
+    #mainHeader.shrink img {
+      max-width: 120px;
+      transition: max-width 0.3s ease;
+    }
+
+    #mainHeader img {
+      max-width: 200px;
+      height: auto;
+      transition: max-width 0.3s ease;
+    }
+
+    /* === Header Controls === */
+    #headerControls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+    }
+
+    #headerControls input,
+    #headerControls select {
+      padding: 6px 8px;
+      font-size: 14px;
+    }
+
+    #howItWorksContainer {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🧭 Sticky Header -->
+  <div id="mainHeader">
+    <img src="logo.png" alt="Our Wallets Our Power logo" />
+    <div id="howItWorksContainer">
+      <button id="howItWorksBtn" style="background:none;border:none;cursor:pointer;font-size:18px;">
+        📘 How it works
+      </button>
+    </div>
+
+    <div id="headerControls">
+      <input type="text" id="search-input" placeholder="Search Brands..."/>
+      <select id="filter-type"></select>
+      <select id="filter-category"></select>
+      <select id="filter-state"></select>
+      <label for="minVotes">Min Votes:</label>
+      <input type="range" id="minVotes" min="0" max="200" step="1" value="0"/>
+      <span id="minVotesValue">0</span>
+    </div>
+  </div>
+
+  <!-- ℹ️ How It Works Modal -->
+  <div id="howItWorksModal"
+       style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;
+              background-color:rgba(0,0,0,0.6);">
+    <div style="background:white;margin:5% auto;padding:12px;border-radius:10px;
+                max-width:600px;text-align:center;">
+      <span id="closeHowItWorks" style="float:right;cursor:pointer;font-size:20px;">&times;</span>
+      <h3>How this works</h3>
+      <img src="how-it-works.png" alt="How it works"
+           style="width:100%;max-width:550px;border-radius:8px;">
+      <p style="font-size:14px;margin-top:6px;">
+        This image explains how votes are counted and how background colors represent results.
+      </p>
+    </div>
+  </div>
+
+  <!-- 🧱 Brand Grid -->
+  <div id="brandList">Loading brands...</div>
+
+  <!-- ℹ️ Info Modal -->
+  <div id="infoModal"
+       style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
+              background-color:rgba(0,0,0,0.5); z-index:1000;
+              justify-content:center; align-items:center;">
+    <div style="background:white; padding:20px; border-radius:8px; max-width:500px;
+                width:90%; margin:auto; box-shadow:0 0 10px rgba(0,0,0,0.3);
+                position:relative; top:10%;">
+      <div id="modalText">Loading...</div>
+      <div id="alternativesSection" style="margin-top: 20px; display: none;">
+        <strong>Alternatives:</strong>
+        <ul id="alternativesList" style="padding-left: 20px; text-align: left;"></ul>
+      </div>
+      <br>
+      <button id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <!-- ➕ Add Brand Controls -->
+  <div id="add-brand-container">
+    <button id="toggleFormBtn">➕ Add a New Brand</button>
+    <button id="toggleUploadBtn">📁 Add Brands (Bulk Upload)</button>
+  </div>
+
+  <!-- 📤 Bulk Upload -->
+  <div id="csvUploadContainer" style="display: none; margin-top: 10px;">
+    <input type="file" id="csvUpload" accept=".csv" />
+    <button id="uploadCsvBtn">Upload Brands</button>
+  </div>
+
+  <!-- 📝 Add Brand Form -->
+  <form id="brandForm" style="display: none;">
+    <label for="brandName">Brand Name:</label>
+    <input type="text" id="brandName" required>
+
+    <label for="category">Category:</label>
+    <select id="category" required></select>
+
+    <label for="type">Type:</label>
+    <select id="type" required onchange="toggleCityField()">
+      <option value="Nationwide">Nationwide</option>
+      <option value="Regional">Regional</option>
+      <option value="Local">Local</option>
+    </select>
+
+    <label for="state">State:</label>
+    <select id="state" required></select>
+
+    <label for="brandDescription">Description:</label>
+    <textarea id="brandDescription" required></textarea>
+
+    <label for="brandLogo">Logo URL:</label>
+    <input type="text" id="brandLogo" name="brandLogo" placeholder="https://...">
+
+    <button type="submit" style="background-color: #007bff;">Submit Brand</button>
+    <button type="button" id="cancelFormBtn" style="background-color: #dc3545;">Cancel</button>
+  </form>
+
+  <!-- 📫 Footer -->
+  <div style="margin-top: 60px; text-align: center;">
+    <p>This site helps you make spending decisions that reflect your values.</p>
+    <p>Contact: <a href="mailto:ourwalletsourpower@gmail.com">ourwalletsourpower@gmail.com</a></p>
+  </div>
+
+  <!-- 🔥 Scripts -->
+  <script src="firebase.js"></script>
+  <script type="module" src="main.js"></script>
+
+  <!-- ⚡ Inline Controls -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 🔹 How It Works modal
+      const howItWorksBtn = document.getElementById("howItWorksBtn");
+      const modal = document.getElementById("howItWorksModal");
+      const closeBtn = document.getElementById("closeHowItWorks");
+
+      howItWorksBtn.addEventListener("click", () => modal.style.display = "block");
+      closeBtn.addEventListener("click", () => modal.style.display = "none");
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+      });
+
+      // 🔹 Add Brand Form Toggle
+      const toggleFormBtn = document.getElementById("toggleFormBtn");
+      const brandForm = document.getElementById("brandForm");
+      const cancelFormBtn = document.getElementById("cancelFormBtn");
+
+      toggleFormBtn?.addEventListener("click", () => {
+        const visible = brandForm.style.display === "block";
+        brandForm.style.display = visible ? "none" : "block";
+        toggleFormBtn.textContent = visible
+          ? "➕ Add a New Brand"
+          : "⬇️ Hide Form";
+      });
+
+      cancelFormBtn?.addEventListener("click", () => {
+        brandForm.style.display = "none";
+        toggleFormBtn.textContent = "➕ Add a New Brand";
+      });
+
+      // 🔹 Bulk Upload Toggle
+      const toggleUploadBtn = document.getElementById("toggleUploadBtn");
+      const uploadContainer = document.getElementById("csvUploadContainer");
+
+      toggleUploadBtn?.addEventListener("click", () => {
+        uploadContainer.style.display =
+          uploadContainer.style.display === "none" ? "block" : "none";
+        toggleUploadBtn.textContent =
+          uploadContainer.style.display === "none"
+            ? "📁 Add Brands (Bulk Upload)"
+            : "⬆️ Hide Bulk Upload";
+      });
+
+      // 🔹 Shrink logo on scroll
+      const header = document.getElementById("mainHeader");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) header.classList.add("shrink");
+        else header.classList.remove("shrink");
+      });
+    });
+  </script>
+
+  <!-- ⚙️ Bulk Upload Logic -->
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB3NM4tnVIoN3TFV7DrelzpBcwYFl_jqmU",
+      authDomain: "our-wallets-our-power.firebaseapp.com",
+      projectId: "our-wallets-our-power",
+      storageBucket: "our-wallets-our-power.appspot.com",
+      messagingSenderId: "109507287783",
+      appId: "1:109507287783:web:0ff7ec45fe1dff15906042",
+      measurementId: "G-ZMS07V2XWE"
+    };
+
+    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const uploadBtn = document.getElementById("uploadCsvBtn");
+    const csvFileInput = document.getElementById("csvUpload");
+
+    uploadBtn?.addEventListener("click", async () => {
+      const file = csvFileInput.files[0];
+      if (!file) {
+        alert("Please select a CSV file first.");
+        return;
+      }
+
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: async (results) => {
+          const rows = results.data;
+          console.log(`Parsed ${rows.length} rows`);
+
+          let uploaded = 0;
+          for (const row of rows) {
+            try {
+              const brandDoc = {
+                "Brand Name": row["Brand Name"],
+                Category: row.Category,
+                State: row.State || "Nationwide",
+                Type: row.Type || "Nationwide",
+                createdAt: row.createdAt || new Date().toISOString(),
+                description: row.description || "",
+                editorial: { owop_status: row.owop_status || "" },
+                logoUrl: row.logoUrl || "",
+                status: row.status || "",
+                votes: {
+                  neutral: Number(row.neutral || 0),
+                  oppose: Number(row.oppose || 0),
+                  support: Number(row.support || 0)
+                }
+              };
+
+              await addDoc(collection(db, "Brands"), brandDoc);
+              uploaded++;
+              console.log(`✅ Uploaded (${uploaded}/${rows.length}): ${brandDoc["Brand Name"]}`);
+            } catch (err) {
+              console.error("❌ Upload failed:", err);
+              alert(`Error uploading ${row["Brand Name"]}: ${err.message}`);
+            }
+          }
+
+          alert(`✅ Uploaded ${uploaded} of ${rows.length} brands successfully!`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
