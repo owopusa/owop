@@ -1,11 +1,3 @@
-/* === Brand Grid === */
-#brandList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  justify-content: center;
-  padding: 10px;
-}
 
 /* === Unified Tile === */
 .brand-item {
@@ -98,7 +90,7 @@
 }
 .brand-logo {
   width: auto;
-  height: 60px;
+  height: 40px;
   max-width: 100px;
   object-fit: contain;
   object-position: center;
@@ -310,4 +302,1667 @@
   min-width: 24px;
   text-align: center;
   font-weight: 600;
+}
+
+/* === MOBILE LAYOUT OVERRIDES === */
+@media (max-width: 768px) {
+  #mainHeader {
+    flex-direction: column;
+    padding: 4px 0;
+  }
+
+  #headerControls {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #headerControls input,
+  #headerControls select {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  #howItWorksContainer {
+    position: static;
+    margin-top: 4px;
+  }
+
+  #brandList {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 6px;
+    gap: 10px;
+  }
+
+  #add-brand-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  #brandForm,
+  #csvUploadContainer {
+    width: 90%;
+    margin: auto;
+    font-size: 16px;
+  }
+
+  button, select, input, textarea {
+    font-size: 16px;
+  }
+}
+/* === MOBILE HEADER FIX === */
+.mobile-only {
+  display: none;
+}
+
+#filterPanel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* --- Mobile layout rules --- */
+@media (max-width: 768px) {
+  #mainHeader {
+    padding: 4px 0;
+  }
+
+  #headerControls {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #filterPanel {
+    display: none; /* hidden until toggled */
+    flex-direction: column;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 90%;
+    margin: auto;
+  }
+
+  .mobile-only {
+    display: block;
+    background: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  #headerControls input[type="text"] {
+    width: 90%;
+    font-size: 1rem;
+    padding: 8px;
+  }
+}
+/* === FIXED DESKTOP GRID LAYOUT === */
+
+/* Default (desktop) */
+#brandList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+/* Brand cards */
+.brand-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  padding: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+}
+
+/* Inner content adjustments */
+.brand-item h3 {
+  margin: 6px 0 4px;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.brand-item img {
+  width: 80%;
+  max-height: 80px;
+  object-fit: contain;
+  margin: 8px auto;
+  display: block;
+}
+
+.brand-item p {
+  margin: 2px 0;
+  font-size: 0.85rem;
+}
+
+/* Compact the vote and opinion sections */
+.popular-vote, .vote-section {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  transform: scale(0.9);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  #brandList {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  #brandList {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+/* === HARD DESKTOP GRID ENFORCEMENT === */
+#brandList {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  gap: 16px !important;
+  padding: 16px !important;
+  justify-items: stretch !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+.brand-item {
+  flex: none !important;
+  width: auto !important;
+  min-width: 240px !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+/* === UNIFORM CARD HEIGHT FIX === */
+#brandList {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 16px;
+  align-items: stretch; /* ensures equal height */
+}
+
+/* make each card expand to same height */
+.brand-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* ensure inner content doesn't push out height */
+.brand-core,
+.popular-vote-container {
+  flex-grow: 1;
+}
+
+/* visually balanced image sizing */
+.brand-logo {
+  height: 40px;
+  object-fit: contain;
+  margin: 6px auto;
+}
+/* === CONSISTENT LOGO SIZING === */
+.brand-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* create a fixed-size image box */
+.brand-logo {
+  width: 100%;
+  max-width: 120px;
+  height: 40px;            /* 🔹 fixed uniform height */
+  object-fit: contain;     /* keep aspect ratio, no distortion */
+  object-position: center; /* center inside box */
+  margin: 10px auto;       /* consistent spacing */
+  display: block;
+  background: white;       /* ensure transparent logos don’t blend in */
+}
+/* === CONSISTENT POPULAR VOTE HEIGHT === */
+.popular-vote-container {
+  width: 100%;
+  min-height: 130px;        /* 🔹 uniform vertical space */
+  max-height: 130px;        /* prevents stretching */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* equal spacing inside */
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;         /* hides overflow text */
+}
+
+/* optional tweak for visual balance */
+.vote-header {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.vote-bar {
+  height: 14px;
+  width: 90%;
+  border-radius: 6px;
+}
+
+/* --- Opinion line (fixed height but supports wrapping) --- */
+.opinion-line {
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  margin-top: 4px;
+  min-height: 40px;          /* fits up to two lines */
+  max-height: 48px;          /* keeps box stable */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  word-break: break-word;    /* handle long words cleanly */
+  white-space: normal;       /* allow wrapping */
+}
+
+/* === FIXED HEIGHT CONSISTENCY + FLEXIBLE OPINION LINE === */
+.popular-vote-container {
+  width: 100%;
+  min-height: 140px;            /* 🔹 enough room for wrapped text */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.vote-header {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.vote-bar {
+  height: 14px;
+  width: 90%;
+  border-radius: 6px;
+}
+
+.opinion-line {
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  margin-top: 4px;
+  padding: 0 6px;
+  min-height: 36px;             /* keeps rows aligned visually */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* === FINAL UNIFORM TILE ALIGNMENT FIX === */
+
+/* 1️⃣ Force equal-height cards across each row */
+#brandList {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 16px !important;
+  align-items: stretch !important; /* make all tiles in a row equal height */
+}
+
+/* 2️⃣ Cards expand and distribute internal space evenly */
+.brand-item {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: center;
+  height: 100% !important;
+  box-sizing: border-box;
+}
+
+/* 3️⃣ Keep logo area visually consistent */
+.brand-core {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  min-height: 150px; /* consistent company name area */
+}
+
+.brand-logo {
+  width: 100%;
+  max-width: 120px;
+  height: 40px;
+  object-fit: contain;
+  object-position: center;
+  margin: 8px auto 4px;
+  background: #fff;
+}
+
+/* 4️⃣ Allow full opinion line text without clipping */
+.popular-vote-container {
+  flex-shrink: 0;
+  width: 100%;
+  min-height: 140px;    /* base alignment height */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.opinion-line {
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  padding: 0 6px;
+  min-height: 38px;     /* baseline alignment */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* 5️⃣ Slightly tighten gaps for balance */
+.vote-header { margin-bottom: 4px; }
+.vote-bar { width: 90%; height: 14px; border-radius: 6px; }
+
+/* === PATCH: Preserve all logic, fix uniform height & opinion line === */
+
+/* Keep existing grid; only normalize internal layout */
+.brand-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Equalize logo zone */
+.brand-core {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  min-height: 150px; /* consistent name/logo area */
+}
+
+.brand-logo {
+  width: 100%;
+  max-width: 120px;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+  margin: 8px auto 6px;
+  background: #fff;
+}
+
+/* Make the vote area flexible but aligned */
+.popular-vote-container {
+  width: 100%;
+  flex-shrink: 0;
+  min-height: 150px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Prevent opinion line from being cut off */
+.popular-vote-container .opinion-line {
+  width: 100%;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  padding: 6px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-word;
+  white-space: normal;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  margin-top: 6px;
+}
+
+/* === ALIGN COMPANY NAMES TO SAME HEIGHT === */
+.brand-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  min-height: 180px; /* uniform vertical space for logo + name + category */
+  box-sizing: border-box;
+}
+
+/* fixed zone for logo to avoid shifting name */
+.brand-logo {
+  width: 100%;
+  max-width: 120px;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+  margin: 8px auto 6px;
+  flex-shrink: 0;
+}
+
+/* normalize text alignment zone under the logo */
+.brand-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.3;
+  margin: 4px 0 2px;
+  min-height: 26px; /* keeps names vertically consistent */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+}
+
+.category-line {
+  font-size: 0.85rem;
+  color: #222;
+  margin: 0;
+  min-height: 24px; /* reserves same space for categories */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+}
+/* === FINAL ALIGNMENT FIX: lock logo, name, and category vertical spacing === */
+
+.brand-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 200px; /* fixed vertical space for logo + text block */
+  padding-top: 4px;
+}
+
+/* create a consistent "logo box" zone */
+.brand-core .logo-box {
+  width: 100%;
+  height: 70px;               /* same visual height for all logos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.brand-core .brand-logo {
+  max-width: 120px;
+  max-height: 60px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* normalize name + category positions */
+.brand-name {
+  font-size: 1.05rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0;
+  min-height: 26px; /* equal space for all names */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.category-line {
+  font-size: 0.85rem;
+  color: #222;
+  line-height: 1.2;
+  margin: 2px 0 0;
+  min-height: 24px; /* equal space for categories */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* === TIGHTER CARD SPACING === */
+
+/* reduce overall vertical footprint of the brand section */
+.brand-core {
+  min-height: 170px; /* was 200px */
+  padding-top: 0;
+}
+
+/* tighten logo box vertical padding */
+.logo-box {
+  height: 50px;          /* was 70px */
+  margin-bottom: 4px;    /* was 6px */
+}
+
+/* pull brand name closer to logo */
+.brand-name {
+  margin: 2px 0 0;
+  min-height: 12px;
+  line-height: 1.2;
+}
+
+/* reduce space before category line */
+.category-line {
+  margin-top: 2px;
+  min-height: 10px;
+  line-height: 1.2;
+}
+
+/* slightly tighten the popular vote block */
+.popular-vote-container {
+  min-height: 150px;  /* was 140–150px */
+  padding: 8px;
+}
+
+/* slightly closer opinion line */
+.popular-vote-container .opinion-line {
+  margin-top: 4px;
+  padding-top: 4px;
+}
+
+/* === REMOVE EXCESS WHITE SPACE ABOVE POPULAR VOTE === */
+
+/* tighten logo and name spacing */
+.brand-core {
+  min-height: unset;          /* allow natural height */
+  padding-bottom: 4px;        /* small breathing room */
+  margin-bottom: 0;           /* remove large bottom gap */
+}
+
+/* reduce logo box space */
+.logo-box {
+  height: 50px;               /* slightly smaller */
+  margin-bottom: 2px;         /* minimal gap before brand name */
+}
+
+/* tighten brand name and category */
+.brand-name {
+  margin: 0;
+  line-height: 1.1;
+}
+.category-line {
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+
+
+/* pull popular vote closer to category */
+.popular-vote-container {
+  margin-top: 4px !important; /* was ~10px+ before */
+}
+
+/* === MOBILE HEADER FIX === */
+@media (max-width: 768px) {
+  #mainHeader {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 4px 8px;
+  }
+
+  #mainHeader img {
+    max-width: 140px;
+    margin: 0 auto;
+  }
+
+  #headerControls {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 6px;
+  }
+
+  #filterPanel {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  #filterToggle {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px;
+  }
+
+  .mobile #filterPanel.active {
+    display: flex;
+  }
+}
+/* === MOBILE FILTER FIX === */
+@media (max-width: 768px) {
+  #filterPanel {
+    display: none !important;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ccc;
+    padding: 8px;
+    z-index: 999;
+  }
+
+  body.mobile #filterPanel.active,
+  .mobile #filterPanel.active,
+  #filterPanel.active {
+    display: flex !important;
+  }
+
+  #filterToggle {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px;
+    cursor: pointer;
+  }
+
+  #headerControls {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* === FINAL MOBILE FILTER FIX (visual test included) === */
+@media (max-width: 768px) {
+  #filterPanel {
+    display: none !important;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 0.25s ease-in-out;
+  }
+
+  /* When toggled open */
+  #filterPanel.active {
+    display: flex !important;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  #filterToggle {
+    display: block !important;
+    width: 100%;
+    text-align: center;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #headerControls {
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+}
+
+/* === MOBILE FILTER PANEL FIX === */
+@media (max-width: 768px) {
+  #filterToggle {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+
+  #filterPanel {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  #filterPanel.active {
+    display: flex;
+    max-height: 500px; /* just to allow expansion */
+    opacity: 1;
+  }
+
+  #headerControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* === MOBILE FILTER VISIBILITY FIX === */
+@media (max-width: 768px) {
+  #filterPanel {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 6px;
+    z-index: 999;
+  }
+
+  #filterPanel.active {
+    display: flex !important;
+  }
+
+  #filterPanel select,
+  #filterPanel input,
+  #filterPanel label,
+  #filterPanel span {
+    color: #000;
+    background: #fdfdfd;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 6px;
+  }
+
+  #filterToggle {
+    display: block;
+    background: #ecb706;
+    color: #000;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+  }
+
+  #headerControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* === LOGO-ONLY RECTANGULAR VIEW === */
+body.logo-only #brandList {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  padding: 8px;
+}
+
+/* rectangular tile style */
+body.logo-only .brand-item {
+  width: 100%;
+  max-width: 180px;
+  height: 110px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.25s ease, background-color 0.3s ease;
+}
+
+/* color balance by dominance */
+body.logo-only .brand-item[data-dominant="support"] { background-color: #d97e7e; }
+body.logo-only .brand-item[data-dominant="oppose"]  { background-color: #7594d6; }
+body.logo-only .brand-item[data-dominant="neutral"] { background-color: #958888; }
+
+/* better visibility for white logos */
+body.logo-only .brand-logo {
+  max-width: 75%;
+  max-height: 65%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 3px rgba(0,0,0,0.35));
+}
+
+/* hide all non-logo content */
+body.logo-only .brand-item > *:not(.brand-core) { display: none !important; }
+body.logo-only .brand-core > *:not(.logo-box) { display: none !important; }
+
+/* mobile layout */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 6px;
+    padding: 6px;
+  }
+  body.logo-only .brand-item {
+    height: 90px;
+    max-width: 140px;
+    border-radius: 8px;
+  }
+  body.logo-only .brand-logo {
+    max-width: 70%;
+    max-height: 60%;
+  }
+}
+
+/* Ensure grid reflows tightly when items are hidden */
+#brandList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.4rem;
+  justify-items: center;
+  align-items: start;
+  grid-auto-rows: auto; /* <— THIS is key */
+}
+
+/* Smooth transitions when re-rendering */
+.brand-item {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+body.logo-only #brandList {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 8px;
+}
+
+.brand-item.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* === MOBILE TILE OPTIMIZATION === */
+@media (max-width: 768px) {
+  #brandList {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+    gap: 6px !important;
+    padding: 6px !important;
+    justify-items: center;
+  }
+
+  .brand-item {
+    width: 100%;
+    max-width: 140px;
+    height: 100px;
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+
+  /* tighten logo zone */
+  .brand-core .logo-box {
+    height: 50px;
+    margin-bottom: 2px;
+  }
+
+  .brand-logo {
+    max-width: 80%;
+    max-height: 50%;
+    object-fit: contain;
+  }
+
+  /* shrink gaps */
+  .brand-name,
+  .category-line {
+    font-size: 0.75rem;
+    line-height: 1.1;
+    margin: 1px 0;
+  }
+
+  /* compress voting section */
+  .popular-vote-container {
+    padding: 4px;
+    min-height: 80px;
+    border-radius: 6px;
+  }
+
+  .vote-bar {
+    height: 10px;
+  }
+
+  .vote-btn {
+    padding: 3px;
+    font-size: 1rem;
+  }
+
+  /* in logo-only mode — make it clean and centered */
+  body.logo-only #brandList {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+    gap: 5px !important;
+    padding: 4px !important;
+  }
+
+  body.logo-only .brand-item {
+    height: 80px;
+    max-width: 120px;
+  }
+
+  body.logo-only .brand-logo {
+    max-width: 70%;
+    max-height: 60%;
+  }
+}
+/* === Simple modal === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 16px 20px;
+  border-radius: 10px;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.close {
+  float: right;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* === FIX: Mobile logo-only grid scaling === */
+
+/* Base logo-only grid */
+body.logo-only #brandList {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
+  gap: 8px !important;
+  padding: 8px !important;
+  justify-items: center;
+}
+
+/* Logo-only card fix */
+body.logo-only .brand-item {
+  width: 100% !important;
+  max-width: 140px !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important; /* Keeps square tiles, prevents overlap */
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Uniform logo sizing */
+body.logo-only .brand-logo {
+  width: 80% !important;
+  height: auto !important;
+  max-height: 60% !important;
+  object-fit: contain;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+}
+
+/* Tighter mobile scaling */
+@media (max-width: 600px) {
+  body.logo-only #brandList {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)) !important;
+    gap: 6px !important;
+  }
+  body.logo-only .brand-item {
+    max-width: 110px !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+  body.logo-only .brand-logo {
+    max-width: 70% !important;
+  }
+}
+
+/* === Auto-hide header when scrolling in logo-only mode === */
+body.logo-only #mainHeader {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+body.logo-only #mainHeader.hidden-header {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* === Small header by default in logo-only mode === */
+body.logo-only #mainHeader {
+  padding: 4px 8px !important;
+  min-height: 40px !important;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* smaller logo + tighter text */
+body.logo-only #mainHeader img {
+  max-height: 28px !important;
+  width: auto;
+  margin: 0 auto;
+}
+
+body.logo-only #mainHeader h1,
+body.logo-only #mainHeader h2 {
+  font-size: 1rem !important;
+  margin: 0;
+}
+
+body.logo-only #headerControls {
+  display: none !important; /* optional if you want it even cleaner */
+}
+/* === Force single-column logo-only layout on mobile === */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start;
+    gap: 8px !important;
+    padding: 6px !important;
+  }
+
+  body.logo-only .brand-item {
+    width: 90% !important;
+    max-width: 320px !important;
+    height: auto !important;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  body.logo-only .brand-logo {
+    max-width: 80% !important;
+    max-height: 60px !important;
+    object-fit: contain;
+  }
+}
+/* === Rectangular single-column logo-only layout on mobile === */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start;
+    gap: 10px !important;
+    padding: 8px !important;
+  }
+
+  body.logo-only .brand-item {
+    width: 92% !important;
+    max-width: 360px !important;
+    height: 120px !important;       /* 🔹 rectangular height */
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--bg-color, #f9f9f9);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+
+  body.logo-only .brand-logo {
+    max-width: 70% !important;
+    max-height: 70% !important;
+    object-fit: contain;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.35));
+  }
+
+  /* better color cues by dominant category */
+  body.logo-only .brand-item[data-dominant="support"] { background-color: #d97e7e; }
+  body.logo-only .brand-item[data-dominant="oppose"]  { background-color: #7594d6; }
+  body.logo-only .brand-item[data-dominant="neutral"] { background-color: #928b88; }
+
+  /* hide all non-logo content */
+  body.logo-only .brand-item > *:not(.brand-core) { display: none !important; }
+  body.logo-only .brand-core > *:not(.logo-box) { display: none !important; }
+}
+
+/* === Slim rectangular single-column logo-only layout on mobile === */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start;
+    gap: 8px !important;
+    padding: 8px !important;
+  }
+
+  body.logo-only .brand-item {
+    width: 94% !important;
+    max-width: 380px !important;
+    height: 80px !important;        /* 🔹 shorter rectangle */
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--bg-color, #f9f9f9);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+
+  body.logo-only .brand-logo {
+    max-width: 65% !important;
+    max-height: 60% !important;
+    object-fit: contain;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+  }
+
+  /* Color coding by dominant */
+  body.logo-only .brand-item[data-dominant="support"] { background-color: #d97e7e; }
+  body.logo-only .brand-item[data-dominant="oppose"]  { background-color: #7594d6; }
+  body.logo-only .brand-item[data-dominant="neutral"] { background-color: #aaa09c; }
+
+  /* Only show logo */
+  body.logo-only .brand-item > *:not(.brand-core) { display: none !important; }
+  body.logo-only .brand-core > *:not(.logo-box) { display: none !important; }
+}
+/* === Optimized rectangular logo-only layout (mobile) === */
+@media (max-width: 768px) {
+  /* Keep filter panel always visible */
+  #filterPanel {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    background: #fff;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  /* Rectangular grid for logos */
+  body.logo-only #brandList {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start;
+    gap: 8px !important;
+    padding: 8px !important;
+    margin-top: 6px;
+  }
+
+  body.logo-only .brand-item {
+    width: 95% !important;
+    max-width: 420px !important;
+    height: 70px !important;       /* 🔹 slim rectangle */
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    background-color: var(--bg-color, #f9f9f9);
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+
+  /* Auto-maximize logos */
+  body.logo-only .brand-logo {
+    width: 100%;
+    height: 100%;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+  }
+
+  /* Dominant color logic */
+  body.logo-only .brand-item[data-dominant="support"] { background-color: #d97e7e; }
+  body.logo-only .brand-item[data-dominant="oppose"]  { background-color: #7594d6; }
+  body.logo-only .brand-item[data-dominant="neutral"] { background-color: #99948f; }
+
+  /* Hide everything except logo */
+  body.logo-only .brand-item > *:not(.brand-core) { display: none !important; }
+  body.logo-only .brand-core > *:not(.logo-box) { display: none !important; }
+
+  /* Remove extra spacing from brand list container */
+  #brandList {
+    margin-bottom: 50px;
+  }
+}
+
+/* === Modal vote button styles === */
+#infoModal .vote-btn {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+  flex: 1;
+  min-width: 90px;
+  font-weight: 600;
+}
+#infoModal .vote-btn[data-type="oppose"] { background-color: #dbe9ff; color: #000; }
+#infoModal .vote-btn[data-type="neutral"] { background-color: #f0f0f0; color: #000; }
+#infoModal .vote-btn[data-type="support"] { background-color: #ffd6d6; color: #000; }
+#infoModal .vote-btn:hover { transform: scale(1.05); }
+
+/* ✅ FORCE FILTER PANEL ALWAYS VISIBLE ON MOBILE */
+@media (max-width: 768px) {
+  #filterPanel {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    padding: 8px 6px;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  /* make filter elements readable and touch-friendly */
+  #filterPanel select,
+  #filterPanel input {
+    font-size: 15px !important;
+    padding: 6px 8px !important;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+  }
+
+  #filterToggle {
+    display: none !important; /* hide toggle button completely */
+  }
+}
+
+/* ✅ MOBILE-ONLY filter panel (no impact on desktop or logo-only) */
+@media (max-width: 768px) and (pointer: coarse) {
+  body.mobile:not(.logo-only) #filterPanel {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    transform: none !important;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 6px;
+    gap: 8px;
+  }
+
+  body.mobile:not(.logo-only) #filterToggle {
+    display: none !important;
+  }
+}
+
+/* === STABLE RECTANGULAR LOGO GRID (NO OVERLAP) === */
+body.logo-only #brandList {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  align-items: start;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* ✅ Use fixed height, no aspect ratio */
+body.logo-only .brand-item {
+  width: 100%;
+  height: 90px;               /* flat rectangular height */
+  max-width: 200px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* ✅ Scale logos nicely */
+body.logo-only .brand-logo {
+  width: 90%;
+  height: auto;
+  max-height: 70%;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.35));
+}
+
+/* color codes */
+body.logo-only .brand-item[data-dominant="support"] { background-color: #e47b7b; }
+body.logo-only .brand-item[data-dominant="oppose"]  { background-color: #7a99d6; }
+body.logo-only .brand-item[data-dominant="neutral"] { background-color: #9b8f8f; }
+
+/* hide non-logo content */
+body.logo-only .brand-item > *:not(.brand-core) { display: none !important; }
+body.logo-only .brand-core > *:not(.logo-box) { display: none !important; }
+
+/* MOBILE SAFE LAYOUT */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 6px;
+    padding: 6px;
+  }
+  body.logo-only .brand-item {
+    height: 50px;             /* shorter and neat */
+    max-width: 160px;
+  }
+  body.logo-only .brand-logo {
+    width: 85%;
+    max-height: 65%;
+  }
+}
+
+/* === RECTANGULAR LOGO GRID — DESKTOP & MOBILE === */
+
+/* --- DESKTOP --- */
+body.logo-only #brandList {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  justify-items: center;
+  align-items: start;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+body.logo-only .brand-item {
+  width: 100%;
+  height: 110px;
+  max-width: 240px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease, background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+body.logo-only .brand-logo {
+  width: 90%;
+  height: auto;
+  max-height: 75%;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.35));
+}
+
+
+/* hide everything but logo */
+body.logo-only .brand-item > *:not(.brand-core) { display: none !important; }
+body.logo-only .brand-core > *:not(.logo-box) { display: none !important; }
+
+/* --- MOBILE ONE-COLUMN STACK --- */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  body.logo-only .brand-item {
+    width: 90%;
+    height: 80px;
+    max-width: none;
+    border-radius: 8px;
+  }
+
+  body.logo-only .brand-logo {
+    width: 85%;
+    max-height: 70%;
+  }
+}
+
+/* === Landscape Grid on Desktop === */
+body.logo-only #brandList {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* wide columns */
+  gap: 14px;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+body.logo-only .brand-item {
+  width: 100%;
+  max-width: 320px;
+  height: 140px; /* ✅ Landscape shape — wider than tall */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--tile-bg, #fff);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.logo-only .brand-logo {
+  width: 85%;
+  height: auto;
+  max-height: 80%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* === Hover (Desktop only) === */
+@media (hover: hover) {
+  body.logo-only .brand-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  }
+}
+
+/* === Mobile: One-column stack === */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  body.logo-only .brand-item {
+    width: 90%;
+    height: 100px; /* flatter cards */
+    max-width: none;
+  }
+
+  body.logo-only .brand-logo {
+    width: 75%;
+    max-height: 70%;
+  }
+}
+/* === 🔥 ABSOLUTE FIX: True Landscape Grid (Desktop Only) === */
+@media (min-width: 769px) {
+  body.logo-only #brandList {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    gap: 20px !important;
+    justify-items: center !important;
+    align-items: start !important;
+  }
+
+  body.logo-only .brand-item {
+    width: 100% !important;
+    max-width: 360px !important;
+    height: 120px !important;     /* ⬅️ landscape height */
+    aspect-ratio: 3 / 1 !important; /* ⬅️ enforce landscape shape */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
+    background: var(--tile-bg, #fff) !important;
+  }
+
+  body.logo-only .brand-logo {
+    width: 90% !important;
+    height: auto !important;
+    max-height: 80% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+}
+
+/* === Mobile stays 1 column stack === */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  body.logo-only .brand-item {
+    width: 90% !important;
+    height: 100px !important;
+    aspect-ratio: 3 / 1.2 !important;
+  }
+}
+
+/* color logic */
+body.logo-only .brand-item[data-dominant="support"] { background-color: #e47b7b; }
+body.logo-only .brand-item[data-dominant="oppose"]  { background-color: #7a99d6; }
+body.logo-only .brand-item[data-dominant="neutral"] { background-color: #9b8f8f; }
+
+/* === Restore Dominant Background Colors === */
+body.logo-only .brand-item[data-dominant="support"] {
+  background-color: #dd7a7a !important; /* light green */
+}
+
+body.logo-only .brand-item[data-dominant="oppose"] {
+  background-color: #76a8f7 !important; /* light red */
+}
+
+body.logo-only .brand-item[data-dominant="neutral"] {
+  background-color: #c9c2c2 !important; /* gray */
+}
+
+/* === Mobile: shorter rectangular tiles === */
+@media (max-width: 768px) {
+  body.logo-only #brandList {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 6px !important;
+  }
+
+  body.logo-only .brand-item {
+    width: 92% !important;
+    height: 70px !important;         /* 🔹 shorter tile height */
+    border-radius: 8px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  body.logo-only .brand-logo {
+    width: 80% !important;
+    height: auto !important;
+    max-height: 70% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
 }

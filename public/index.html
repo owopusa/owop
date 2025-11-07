@@ -77,13 +77,17 @@
     </div>
 
     <div id="headerControls">
-      <input type="text" id="search-input" placeholder="Search Brands..."/>
-      <select id="filter-type"></select>
-      <select id="filter-category"></select>
-      <select id="filter-state"></select>
-      <label for="minVotes">Min Votes:</label>
-      <input type="range" id="minVotes" min="0" max="200" step="1" value="0"/>
-      <span id="minVotesValue">0</span>
+      <input type="text" id="search-input" placeholder="Search brands..." />
+      <button id="filterToggle" class="mobile-only">☰ Filters</button>
+      <button id="toggleLogoView">🖼️ Logo View</button>
+      <div id="filterPanel">
+        <select id="filter-type"></select>
+        <select id="filter-category"></select>
+        <select id="filter-state"></select>
+        <label for="minVotes">Min Votes:</label>
+        <input type="range" id="minVotes" min="0" max="200" step="1" value="0" />
+        <span id="minVotesValue">0</span>
+      </div>
     </div>
   </div>
 
@@ -297,5 +301,62 @@
       });
     });
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const filterPanel = document.getElementById("filterPanel");
+  const filterToggle = document.getElementById("filterToggle");
+
+  // ✅ Let CSS media queries handle mobile layout.
+  // We only handle toggling behavior here.
+  if (filterToggle && filterPanel) {
+    filterToggle.addEventListener("click", () => {
+      filterPanel.classList.toggle("active");
+    });
+  }
+
+  // ✅ NEVER force .mobile or auto-open filters here
+  console.log("✅ Filter toggle initialized (CSS controls mobile layout)");
+});
+</script>
+<script>
+  // ✅ FINAL FIX: force filter listeners to attach after everything is ready
+  setTimeout(() => {
+    console.log("✅ Rebinding filters...");
+    const filterIds = ["filter-type", "filter-category", "filter-state", "minVotes", "search-input"];
+    filterIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.removeEventListener("input", window.filterBrands);
+        el.removeEventListener("change", window.filterBrands);
+        el.addEventListener("input", window.filterBrands);
+        el.addEventListener("change", window.filterBrands);
+      } else {
+        console.warn(`⚠️ Missing filter element: ${id}`);
+      }
+    });
+  }, 1500);
+</script>
+<script>
+document.getElementById("toggleLogoView")?.addEventListener("click", () => {
+  document.body.classList.toggle("logo-only");
+
+  // ✅ Force reflow so the grid reorders visually
+  if (typeof refreshGridLayout === "function") refreshGridLayout();
+
+  // ✅ Re-apply active filters after layout change
+  if (typeof window.filterBrands === "function") {
+    setTimeout(() => window.filterBrands(), 50);
+  }
+
+  console.log("🎨 Logo-only view toggled:", document.body.classList.contains("logo-only"));
+});
+</script>
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <div id="modalText"></div>
+  </div>
+</div>
 </body>
 </html>
